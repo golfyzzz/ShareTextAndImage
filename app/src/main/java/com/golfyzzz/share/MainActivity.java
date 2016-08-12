@@ -34,6 +34,15 @@ public class MainActivity extends AppCompatActivity {
 
         mText = (AppCompatEditText) findViewById(R.id.text);
         mImage = (RelativeLayout) findViewById(R.id.image);
+
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Log.d("save","save");
+                saveImage();
+            }
+        }, 1000);
     }
 
     @Override
@@ -46,15 +55,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Log.d("save","resume");
-
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Log.d("save","save");
-                saveImage();
-            }
-        }, 50);
     }
 
     private void saveImage() {
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         Intent share = new Intent(Intent.ACTION_SEND);
         share.putExtra(Intent.EXTRA_TEXT, mText.getText().toString());
         share.setType("text/*");
-        startActivity(Intent.createChooser(share, "sent to"));
+        startActivity(Intent.createChooser(share, "Sent to"));
     }
 
     public void sentImage(View view) {
@@ -103,6 +103,6 @@ public class MainActivity extends AppCompatActivity {
         Intent share = new Intent(Intent.ACTION_SEND);
         share.setType("image/*");
         share.putExtra(Intent.EXTRA_STREAM, uri);
-        startActivity(Intent.createChooser(share, "Share to"));
+        startActivity(Intent.createChooser(share, "Sent to"));
     }
 }
