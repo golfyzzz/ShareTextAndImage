@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
     public void sendText(View view) {
         Intent share = new Intent(Intent.ACTION_SEND);
         share.putExtra(Intent.EXTRA_TEXT, mText.getText().toString());
-        share.setType("text/*");
+        share.setType("text/plain");
         startActivity(Intent.createChooser(share, "Sent to"));
     }
 
